@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js";
 
 const app = new PIXI.Application({ resizeTo: window });
 
-document.body.appendChild(app.view);
+document.body.appendChild(app.view as unknown as Node);
 
 app.stop();
 

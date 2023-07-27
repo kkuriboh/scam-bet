@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["dom"],
+    "lib": ["esnext", "dom"],
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "bundler",
@@ -13,9 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
-    "noEmit": true,
-    "types": [
-      "bun-types" // add Bun global
-    ]
+    "noEmit": true
   }
 }
