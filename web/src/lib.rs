@@ -3,6 +3,8 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
+pub mod error_template;
+
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
     provide_meta_context(cx);
@@ -19,10 +21,10 @@ pub fn App(cx: Scope) -> impl IntoView {
             }
             .into_view(cx)
         }>
-			<Routes>
-				<Route path="" view=|cx| view! { cx, <HomePage/> }/>
-				<Route path="/roulette" view=|cx| view! { cx, <Roulette/> }/>
-			</Routes>
+            <Routes>
+                <Route path="/" view=|cx| view! { cx, <HomePage/> }/>
+                <Route path="/roulette" view=|cx| view! { cx, <Roulette/> }/>
+            </Routes>
         </Router>
     }
 }
@@ -30,22 +32,22 @@ pub fn App(cx: Scope) -> impl IntoView {
 #[component]
 fn HomePage(cx: Scope) -> impl IntoView {
     let on_click = move |_| {
-		let nav = use_navigate(cx);
-		request_animation_frame(move || nav("/roulette", Default::default()).unwrap());
-	};
+        let nav = use_navigate(cx);
+        request_animation_frame(move || nav("/roulette", Default::default()).unwrap());
+    };
 
     view! { cx,
-		<main>
-			<h1>"Welcome to Leptos!"</h1>
-			<button on:click=on_click>"roulette"</button>
-		</main>
+        <main>
+            <h1>"Welcome to Leptos!"</h1>
+            <button on:click=on_click>"roulette"</button>
+        </main>
     }
 }
 
 #[component]
 fn Roulette(cx: Scope) -> impl IntoView {
     view! {
-		cx,
-		<script src="games/roulette.js" />
-	}
+        cx,
+        <script src="games/roulette.js" />
+    }
 }

@@ -1,17 +1,17 @@
-#[cfg(feature = "ssr")]
+use axum::{routing::post, Router};
+use leptos::*;
+use leptos_axum::{generate_route_list, LeptosRoutes};
+use web::App;
+
+mod fileserv;
+use fileserv::file_and_error_handler;
+
 #[tokio::main]
 async fn main() {
-    use axum::{routing::post, Router};
-    use leptos::*;
-    use leptos_axum::{generate_route_list, LeptosRoutes};
-    use scam_bet::app::*;
-    use scam_bet::fileserv::file_and_error_handler;
-
     simple_logger::init_with_level(log::Level::Debug).expect("couldn't initialize logging");
 
     let conf = get_configuration(None).await.unwrap();
     let leptos_options = conf.leptos_options;
-    let addr = leptos_options.site_addr;
     let routes = generate_route_list(|cx| view! { cx, <App/> }).await;
 
     let app = Router::new()
@@ -20,12 +20,11 @@ async fn main() {
         .fallback(file_and_error_handler)
         .with_state(leptos_options);
 
+    let addr = "[::]:3000".parse().unwrap();
+
     log!("listening on http://{}", &addr);
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
         .unwrap();
 }
-
-#[cfg(not(feature = "ssr"))]
-pub fn main() {}

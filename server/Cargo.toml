@@ -1,0 +1,19 @@
+[package]
+name = "server"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = "0.6.19"
+leptos = { version = "0.4.6", features = ["ssr"] }
+leptos_axum = "0.4.6"
+leptos_router = { version = "0.4.6", features = ["ssr"] }
+tokio = "1.29.1"
+tower = "0.4.13"
+tower-http = { version = "0.4.3", features = ["fs"] }
+tracing = "0.1.37"
+web = { path = "../web", features = ["ssr"] }
+simple_logger = "4.2.0"
+log = "0.4.19"
