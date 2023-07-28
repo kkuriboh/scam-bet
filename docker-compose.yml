@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  main-db:
+    image: scylladb/scylla
+    container_name: scylla-bet
+    command: "--smp 1 --memory=750M --overprovisioned 1"
+    ports:
+      - "9042:9042"
+
+  cache-db:
+    image: bitnami/redis
+    container_name: redis-bet
+    ports:
+      - "6379:6379"
+    environment:
+      - "ALLOW_EMPTY_PASSWORD=yes"
+    volumes:
+      - "redis_data:/bitnami/redis/data"
+
+volumes:
+  redis_data:
+    driver: local
