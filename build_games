@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for dir in games/*
+do
+	bun build --minify "$dir/index.ts" \
+		> "public/$dir.js";
+done

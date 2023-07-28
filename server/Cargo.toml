@@ -3,8 +3,6 @@ name = "server"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 axum = "0.6.19"
 leptos = { version = "0.4.6", features = ["ssr"] }
@@ -17,3 +15,13 @@ tracing = "0.1.37"
 web = { path = "../web", features = ["ssr"] }
 simple_logger = "4.2.0"
 log = "0.4.19"
+scylla = "0.3.1"
+uuid = "1.4.1"
+chrono = "0.4.26"
+redis = { version = "0.23.1", features = ["tokio-rustls-comp", "r2d2"] }
+anyhow = "1.0.72"
+thiserror = "1.0.44"
+r2d2 = "0.8.10"
+
+[build-dependencies]
+dotenv-build = "0.1.1"
